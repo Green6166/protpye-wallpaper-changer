@@ -1,0 +1,7 @@
+﻿[*.vb]
+
+# BC42104: Variable is used before it has been assigned a value
+dotnet_diagnostic.BC42104.severity = none
+
+# IDE0003: Remove qualification
+dotnet_diagnostic.IDE0003.severity = none
