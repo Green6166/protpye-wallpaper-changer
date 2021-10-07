@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class Form2
     Inherits System.Windows.Forms.Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,7 +20,7 @@ Partial Class Form2
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(Form2))
@@ -37,8 +37,6 @@ Partial Class Form2
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Listbox2 = New System.Windows.Forms.ListBox()
         Me.Button4 = New System.Windows.Forms.Button()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
-        Me.Label1 = New System.Windows.Forms.Label()
         CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -60,7 +58,7 @@ Partial Class Form2
         Me.Button1.Name = "Button1"
         Me.Button1.Size = New System.Drawing.Size(126, 59)
         Me.Button1.TabIndex = 1
-        Me.Button1.Text = "add a photo to the list"
+        Me.Button1.Text = "Add a Photo/GIF to the list"
         Me.Button1.UseVisualStyleBackColor = True
         '
         'Button2
@@ -69,7 +67,7 @@ Partial Class Form2
         Me.Button2.Name = "Button2"
         Me.Button2.Size = New System.Drawing.Size(126, 59)
         Me.Button2.TabIndex = 2
-        Me.Button2.Text = "remove a photo " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "from the list" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
+        Me.Button2.Text = "remove a Photo/GIF " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "from the list" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10)
         Me.Button2.UseVisualStyleBackColor = True
         '
         'Button3
@@ -79,7 +77,7 @@ Partial Class Form2
         Me.Button3.Name = "Button3"
         Me.Button3.Size = New System.Drawing.Size(126, 59)
         Me.Button3.TabIndex = 4
-        Me.Button3.Text = "EXECUTE " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(ORDER 66)" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(aka start button)"
+        Me.Button3.Text = "EXECUTE " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "(aka start button)"
         Me.Button3.UseVisualStyleBackColor = True
         '
         'FileSystemWatcher1
@@ -102,7 +100,7 @@ Partial Class Form2
         Me.Label2.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
         Me.Label2.Location = New System.Drawing.Point(276, 232)
         Me.Label2.Name = "Label2"
-        Me.Label2.Size = New System.Drawing.Size(256, 165)
+        Me.Label2.Size = New System.Drawing.Size(262, 165)
         Me.Label2.TabIndex = 7
         Me.Label2.Text = resources.GetString("Label2.Text")
         '
@@ -118,6 +116,9 @@ Partial Class Form2
         Me.PictureBox1.TabIndex = 8
         Me.PictureBox1.TabStop = False
         Me.PictureBox1.Tag = ""
+        '
+        'Timer1
+        '
         '
         'Listbox2
         '
@@ -138,26 +139,8 @@ Partial Class Form2
         Me.Button4.Name = "Button4"
         Me.Button4.Size = New System.Drawing.Size(126, 59)
         Me.Button4.TabIndex = 10
-        Me.Button4.Text = "(jk if you want to kill the program just use task manger)"
+        Me.Button4.Text = "PAUSE"
         Me.Button4.UseVisualStyleBackColor = True
-        '
-        'TextBox1
-        '
-        Me.TextBox1.Location = New System.Drawing.Point(569, 295)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.Size = New System.Drawing.Size(219, 20)
-        Me.TextBox1.TabIndex = 11
-        '
-        'Label1
-        '
-        Me.Label1.AutoSize = True
-        Me.Label1.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.5!)
-        Me.Label1.Location = New System.Drawing.Point(580, 318)
-        Me.Label1.Name = "Label1"
-        Me.Label1.Size = New System.Drawing.Size(197, 90)
-        Me.Label1.TabIndex = 12
-        Me.Label1.Text = "this textbox lets you select where to" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " save the wallpaper file for" & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & " backround c" &
-    "hange over " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "default settings can be " & Global.Microsoft.VisualBasic.ChrW(13) & Global.Microsoft.VisualBasic.ChrW(10) & "left untouched if you wish"
         '
         'Form2
         '
@@ -165,8 +148,6 @@ Partial Class Form2
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Button4
         Me.ClientSize = New System.Drawing.Size(800, 415)
-        Me.Controls.Add(Me.Label1)
-        Me.Controls.Add(Me.TextBox1)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Listbox2)
         Me.Controls.Add(Me.PictureBox1)
@@ -201,6 +182,4 @@ Partial Class Form2
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Listbox2 As ListBox
     Friend WithEvents Button4 As Button
-    Friend WithEvents TextBox1 As TextBox
-    Friend WithEvents Label1 As Label
 End Class

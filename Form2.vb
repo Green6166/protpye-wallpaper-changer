@@ -27,17 +27,18 @@ Public Class Form2
 
     Friend Sub SetWallpaper(ByRef img As Image)
 
-        Dim imageLocation As String
 
 
 
 
-        imageLocation = TextBox1.Text
+
+
 
 
         Try
             Form3.Show()
             Dim image1 = Form3.PictureBox1.Image
+
             ''image1.Save(imageLocation, Imaging.ImageFormat.Bmp) 
             ''SystemParametersInfo(SPI_SETDESKWALLPAPER, 0, imageLocation, SPIF_UPDATEINIFILE Or SPIF_SENDWININICHANGE)
 
@@ -62,22 +63,14 @@ Public Class Form2
     Private Sub Form2_Load(ByVal sender As System.Object, ByVal_e As System.EventArgs) Handles MyBase.Load
         Form3.Show()
 
-        Dim SW As IO.StreamWriter = IO.File.CreateText("C:\timingslist.txt")
-        For Each item In Listbox2.Items
-            SW.WriteLine(item.ToString)
-        Next
-        SW.Close()
-
-        Dim SWpics As IO.StreamWriter = IO.File.CreateText("C:\picturelist.txt")
-        For Each item In PictureList.Items
-            SWpics.WriteLine(item.ToString)
-        Next
-        SWpics.Close()
-        TextBox1.Text = My.Computer.FileSystem.CombinePath(My.Computer.FileSystem.SpecialDirectories.MyPictures, WallpaperFile)
-
-
+        Dim lines() As String = IO.File.ReadAllLines("C:\timingslist.txt")
+        Listbox2.Items.AddRange(lines)
+        NumericUpDown1.Value = Listbox2.Items.Item(Listbox2.Items.Count - 1)
+        Dim linespics() As String = IO.File.ReadAllLines("C:\picturelist.txt")
+        PictureList.Items.AddRange(linespics)
 
         Me.Show()
+        Timer1.Start()
 
 
 
@@ -144,69 +137,17 @@ Public Class Form2
         Listbox2.Items.RemoveAt(Listbox2.Items.Count - 1)
     End Sub
 
+    Public sleepersim = 0
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-        Me.Hide()
+
         pauser = 1
-        Form1.Show()
+
         Dim Pic As Integer
         Pic = 0
-        Dim sleepersim = 0
+        Timer1.Interval = 1
         Dim sleepersimv2 = 0
         Button3.Enabled = True
-        Do
-            For Each item In PictureList.Items
-                Try
-                    If pauser = 0 Then
-                        Exit Do
-
-                    End If
-                    Me.PictureBox1.ImageLocation = item.ToString
-                    PictureBox1.Refresh()
-                    SetWallpaper(PictureBox1.Image)
-
-
-
-
-                    Dim first As String
-
-                    first = (Listbox2.Items(sleepersim) * 1000)
-
-
-                    'sleepersim = TimingsList.Items(item) * 1000
-
-                    Thread.Sleep(first)
-
-
-
-
-
-                    If sleepersim + 1 > Listbox2.Items.Count - 1 Then
-                        sleepersim = 0
-                        Exit For
-                    End If
-
-                    sleepersim = sleepersim + 1
-
-                Catch ex As Exception
-
-                    '  sleepersim = (TimingsList.Items.Item(item) * 1000)
-
-
-
-
-
-
-
-                    MsgBox("Timer error line 200 ish " & ex.Message & ex.StackTrace & ex.HelpLink & ex.Source)
-
-
-
-                    Close()
-                End Try
-
-            Next
-
-        Loop
+        Timer1.Start()
 
 
 
@@ -222,15 +163,19 @@ Public Class Form2
 
 
 
-    Private Sub Form1_FormClosing(
-        sender As Object,
-        e As FormClosingEventArgs) Handles Me.FormClosing
-        My.Settings.Properties.Clear()
-        For Each item In PictureList.Items
+    Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
 
-
-
+        Dim SW As IO.StreamWriter = IO.File.CreateText("C:\timingslist.txt")
+        For Each item In Listbox2.Items
+            SW.WriteLine(item.ToString)
         Next
+        SW.Close()
+
+        Dim SWpics As IO.StreamWriter = IO.File.CreateText("C:\picturelist.txt")
+        For Each item In PictureList.Items
+            SWpics.WriteLine(item.ToString)
+        Next
+        SWpics.Close()
 
     End Sub
 
@@ -266,5 +211,37 @@ Public Class Form2
         Next
         SWpics.Close()
 
+    End Sub
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Try
+            Timer1.Stop()
+
+            If sleepersim + 1 > Listbox2.Items.Count - 1 Then
+                sleepersim = 0
+
+            End If
+
+            sleepersim = sleepersim + 1
+            Timer1.Interval = Listbox2.Items.Item(sleepersim) * 1000
+            Form3.PictureBox1.ImageLocation = PictureList.Items.Item(sleepersim)
+            Me.PictureBox1.ImageLocation = Form3.PictureBox1.ImageLocation
+            Me.PictureBox1.Refresh()
+            Timer1.Start()
+            Form3.PictureBox1.Refresh()
+            Button1.Enabled = False
+            Button2.Enabled = False
+            Button3.Enabled = False
+
+        Catch ex As Exception
+            MsgBox(ex.Message & ": are there any photos loaded?  tick.error")
+        End Try
+
+    End Sub
+    Private Sub Button4_MouseClick(sender As Object, e As MouseEventArgs) Handles Button4.MouseClick
+        Timer1.Stop()
+        Button1.Enabled = True
+        Button2.Enabled = True
+        Button3.Enabled = True
     End Sub
 End Class

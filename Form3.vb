@@ -1,7 +1,8 @@
 ﻿Imports System.ComponentModel
-
+Imports System.Drawing
 Public Class Form3
     Private Sub PictureBox1_Click(sender As Object, e As EventArgs) Handles PictureBox1.Click
+
 
     End Sub
 
@@ -14,16 +15,23 @@ Public Class Form3
         Dim i = 1
         For Each file In My.Computer.FileSystem.GetFiles(My.Computer.FileSystem.SpecialDirectories.Desktop)
 
-            MsgBox(file)
+            ' MsgBox(file)
             Dim picbox As New PictureBox
+            Dim labl As New Label
             Dim v = picbox.Name = (i.ToString)
-            picbox.Width = 45
-            picbox.Top = 25
+            picbox.Width = 20
+            picbox.Height = 20
+            picbox.Top = i + 10
             picbox.Left = i
             picbox.SizeMode = PictureBoxSizeMode.StretchImage
             picbox.BorderStyle = BorderStyle.FixedSingle
+            Dim filelocation = file.ToString
+            picbox.Image = Ico(filelocation)
+            picbox.BackgroundImage = PictureBox1.Image
+
             i = i + 15
         Next
+        Dim zero = 0
 
     End Sub
 
@@ -31,40 +39,25 @@ Public Class Form3
         Form2.Close()
     End Sub
 
+    Public Function Ico(file As String)
+        Dim filePath As String = file
+        Dim TheIcon As Icon = IconFromFilePath(filePath)
 
-    Public Sub ExtractIcon_1()
+        If TheIcon IsNot Nothing Then
+            ''#Save it to disk, or do whatever you want with it.
 
-        Dim dInfo As New System.IO.DirectoryInfo("c:\")
+        End If
+        Return TheIcon.ToBitmap
+    End Function
 
-        Dim lvItem As ListViewItem
+    Public Function IconFromFilePath(filePath As String) As Icon
+            Dim result As Icon = Nothing
+            Try
+                result = Icon.ExtractAssociatedIcon(filePath)
+            Catch ''# swallow and return nothing. You could supply a default Icon here as well
+            End Try
+            Return result
 
-        ListView2.BeginUpdate()
 
-        ListView2.Items.Clear()
-
-        Dim CurrFile As System.IO.FileInfo
-
-        For Each CurrFile In dInfo.GetFiles()
-
-            Dim iFileIcon As Icon = SystemIcons.WinLogo
-
-            lvItem = New ListViewItem(CurrFile.Name, 1)
-
-            If Not (ImageList2.Images.ContainsKey(CurrFile.Extension)) Then
-
-                iFileIcon = System.Drawing.Icon.ExtractAssociatedIcon _
-                   (CurrFile.FullName)
-
-                ImageList2.Images.Add(CurrFile.Extension, iFileIcon)
-
-            End If
-
-            lvItem.ImageKey = CurrFile.Extension
-                ListView2.Items.Add(
-
-        Next CurrFile
-
-        ListView2.EndUpdate()
-
-    End Sub
+    End Function
 End Class
