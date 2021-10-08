@@ -37,9 +37,12 @@ Partial Class Form2
         Me.Timer1 = New System.Windows.Forms.Timer(Me.components)
         Me.Listbox2 = New System.Windows.Forms.ListBox()
         Me.Button4 = New System.Windows.Forms.Button()
+        Me.Timer2 = New System.Windows.Forms.Timer(Me.components)
+        Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'PictureList
@@ -142,12 +145,28 @@ Partial Class Form2
         Me.Button4.Text = "PAUSE"
         Me.Button4.UseVisualStyleBackColor = True
         '
+        'Timer2
+        '
+        Me.Timer2.Interval = 1000
+        '
+        'PictureBox2
+        '
+        Me.PictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch
+        Me.PictureBox2.Image = CType(resources.GetObject("PictureBox2.Image"), System.Drawing.Image)
+        Me.PictureBox2.Location = New System.Drawing.Point(666, 399)
+        Me.PictureBox2.Name = "PictureBox2"
+        Me.PictureBox2.Size = New System.Drawing.Size(14, 13)
+        Me.PictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage
+        Me.PictureBox2.TabIndex = 11
+        Me.PictureBox2.TabStop = False
+        '
         'Form2
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.CancelButton = Me.Button4
         Me.ClientSize = New System.Drawing.Size(800, 415)
+        Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.Button4)
         Me.Controls.Add(Me.Listbox2)
         Me.Controls.Add(Me.PictureBox1)
@@ -165,6 +184,7 @@ Partial Class Form2
         CType(Me.FileSystemWatcher1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.NumericUpDown1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
+        CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
@@ -182,4 +202,6 @@ Partial Class Form2
     Friend WithEvents Timer1 As Timer
     Friend WithEvents Listbox2 As ListBox
     Friend WithEvents Button4 As Button
+    Friend WithEvents Timer2 As Timer
+    Friend WithEvents PictureBox2 As PictureBox
 End Class

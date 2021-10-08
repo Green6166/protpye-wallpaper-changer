@@ -27,9 +27,12 @@ Public Class Form3
             picbox.BorderStyle = BorderStyle.FixedSingle
             Dim filelocation = file.ToString
             picbox.Image = Ico(filelocation)
-            picbox.BackgroundImage = PictureBox1.Image
+
+
+            picbox.BackgroundImage = Form2.PictureBox2.Image
 
             i = i + 15
+            picbox.BringToFront()
         Next
         Dim zero = 0
 

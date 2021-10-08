@@ -224,10 +224,13 @@ Public Class Form2
 
             sleepersim = sleepersim + 1
             Timer1.Interval = Listbox2.Items.Item(sleepersim) * 1000
+            NumericUpDown1.Value = Listbox2.Items.Item(sleepersim)
             Form3.PictureBox1.ImageLocation = PictureList.Items.Item(sleepersim)
             Me.PictureBox1.ImageLocation = Form3.PictureBox1.ImageLocation
             Me.PictureBox1.Refresh()
+
             Timer1.Start()
+            Timer2.Start()
             Form3.PictureBox1.Refresh()
             Button1.Enabled = False
             Button2.Enabled = False
@@ -240,8 +243,17 @@ Public Class Form2
     End Sub
     Private Sub Button4_MouseClick(sender As Object, e As MouseEventArgs) Handles Button4.MouseClick
         Timer1.Stop()
+        Timer2.Stop()
+        NumericUpDown1.Value = Listbox2.Items.Item(Listbox2.Items.Count - 1)
         Button1.Enabled = True
         Button2.Enabled = True
         Button3.Enabled = True
+    End Sub
+
+    Private Sub Timer2_Tick(sender As Object, e As EventArgs) Handles Timer2.Tick
+        Timer2.Stop()
+        NumericUpDown1.Value = NumericUpDown1.Value - 0.5
+        Timer2.Interval = 500
+        Timer2.Start()
     End Sub
 End Class
