@@ -132,9 +132,12 @@ Public Class Form2
     End Sub
 
     Private Sub Button2_Click(sender As Object, e As EventArgs) Handles Button2.Click
-
-        PictureList.Items.RemoveAt(PictureList.Items.Count - 1)
-        Listbox2.Items.RemoveAt(Listbox2.Items.Count - 1)
+        Try
+            PictureList.Items.RemoveAt(PictureList.Items.Count - 1)
+            Listbox2.Items.RemoveAt(Listbox2.Items.Count - 1)
+        Catch eex As Exception
+            MsgBox(eex.Message & "Nothing Is there To delete. please add something now")
+        End Try
     End Sub
 
     Public sleepersim = 0

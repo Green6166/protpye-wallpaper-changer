@@ -18,7 +18,7 @@ Public Class Form3
             ' MsgBox(file)
             Dim picbox As New PictureBox
             Dim labl As New Label
-            Dim v = picbox.Name = (i.ToString)
+
             picbox.Width = 20
             picbox.Height = 20
             picbox.Top = i + 10
@@ -53,6 +53,7 @@ Public Class Form3
         Return TheIcon.ToBitmap
     End Function
 
+
     Public Function IconFromFilePath(filePath As String) As Icon
             Dim result As Icon = Nothing
             Try
@@ -63,4 +64,14 @@ Public Class Form3
 
 
     End Function
+
+    Private Sub Timer1_Tick(sender As Object, e As EventArgs) Handles Timer1.Tick
+        Timer1.Stop()
+        Timer1.Interval = 500
+        For Each pb As PictureBox In Me.Controls.OfType(Of PictureBox)()
+
+            pb.BringToFront()
+        Next
+        Timer1.Start()
+    End Sub
 End Class
