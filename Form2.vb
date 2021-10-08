@@ -248,19 +248,24 @@ Public Class Form2
                 Form3.PictureBox1.ImageLocation = PictureList.Items.Item(sleepersim)
                 Me.PictureBox1.ImageLocation = Form3.PictureBox1.ImageLocation
                 Me.PictureBox1.Refresh()
-            Catch
-                Form3.AxWindowsMediaPlayer1.URL = PictureList.Items.Item(sleepersim).ToString
-                Form3.AxWindowsMediaPlayer1.Visible = True
 
+            Catch
+                Form3.AxWindowsMediaPlayer1.Visible = True
+                Form3.AxWindowsMediaPlayer1.URL = PictureList.Items.Item(sleepersim).ToString
+                Form3.AxWindowsMediaPlayer1.Refresh()
+                Form3.AxWindowsMediaPlayer1.close()
             End Try
             Timer1.Start()
                 Timer2.Start()
-                Form3.PictureBox1.Refresh()
-                Button1.Enabled = False
-                Button2.Enabled = False
-                Button3.Enabled = False
+            Form3.PictureBox1.Refresh()
+            'Try
+            'Button1.Enabled = False
+            'Button2.Enabled = False
+            ' Button3.Enabled = False
+            'Catch ex As exception
 
-            Catch ex As Exception
+            'End Try
+        Catch ex As Exception
                 MsgBox(ex.Message & ": are there any photos loaded?  tick.error")
         End Try
 
