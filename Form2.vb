@@ -21,6 +21,7 @@ Public Class Form2
     Private Declare Auto Function SystemParametersInfo Lib "user32.dll" (ByVal uAction As Integer, ByVal uParam As Integer, ByVal lpvParam As String, ByVal fuWinIni As Integer) As Integer
 
     Const WallpaperFile As String = "c:\wallpaper.bmp"
+    ReadOnly maindirec = My.Computer.FileSystem.SpecialDirectories.CurrentUserApplicationData
 
 
 
@@ -63,10 +64,10 @@ Public Class Form2
     Private Sub Form2_Load(ByVal sender As System.Object, ByVal_e As System.EventArgs) Handles MyBase.Load
         Form3.Show()
 
-        Dim lines() As String = IO.File.ReadAllLines("C:\timingslist.txt")
+        Dim lines() As String = IO.File.ReadAllLines(maindirec + "\PROTPYE\timingslist.txt")
         Listbox2.Items.AddRange(lines)
         NumericUpDown1.Value = Listbox2.Items.Item(Listbox2.Items.Count - 1)
-        Dim linespics() As String = IO.File.ReadAllLines("C:\picturelist.txt")
+        Dim linespics() As String = IO.File.ReadAllLines(maindirec + "\PROTPYE\picturelist.txt")
         PictureList.Items.AddRange(linespics)
 
         Me.Show()
@@ -151,7 +152,7 @@ Public Class Form2
         Dim sleepersimv2 = 0
         Button3.Enabled = True
         Timer1.Start()
-
+        Form3.Timer1.Start()
 
 
     End Sub
@@ -168,13 +169,13 @@ Public Class Form2
 
     Private Sub Form1_FormClosing(sender As Object, e As FormClosingEventArgs) Handles Me.FormClosing
 
-        Dim SW As IO.StreamWriter = IO.File.CreateText("C:\timingslist.txt")
+        Dim SW As IO.StreamWriter = IO.File.CreateText(maindirec + "\PROTPYE\timingslist.txt")
         For Each item In Listbox2.Items
             SW.WriteLine(item.ToString)
         Next
         SW.Close()
 
-        Dim SWpics As IO.StreamWriter = IO.File.CreateText("C:\picturelist.txt")
+        Dim SWpics As IO.StreamWriter = IO.File.CreateText(maindirec + "\PROTPYE\picturelist.txt")
         For Each item In PictureList.Items
             SWpics.WriteLine(item.ToString)
         Next
@@ -201,18 +202,33 @@ Public Class Form2
 
 
     Sub Form1_closing(sender As Object, e As EventArgs) Handles MyBase.Closing
+        Try
+            Dim SW As IO.StreamWriter = IO.File.CreateText(maindirec + "\PROTPYE\timingslist.txt")
+            For Each item In Listbox2.Items
+                SW.WriteLine(item.ToString)
+            Next
+            SW.Close()
 
-        Dim SW As IO.StreamWriter = IO.File.CreateText("C:\timingslist.txt")
-        For Each item In Listbox2.Items
-            SW.WriteLine(item.ToString)
-        Next
-        SW.Close()
+            Dim SWpics As IO.StreamWriter = IO.File.CreateText(maindirec + "\PROTPYE\picturelist.txt")
+            For Each item In PictureList.Items
+                SWpics.WriteLine(item.ToString)
+            Next
+            SWpics.Close()
+        Catch
+            My.Computer.FileSystem.CreateDirectory(maindirec + "\PROTPYE\")
+            Dim SW As IO.StreamWriter = IO.File.CreateText(maindirec + "\PROTPYE\timingslist.txt")
+            For Each item In Listbox2.Items
+                SW.WriteLine(item.ToString)
+            Next
+            SW.Close()
 
-        Dim SWpics As IO.StreamWriter = IO.File.CreateText("C:\picturelist.txt")
-        For Each item In PictureList.Items
-            SWpics.WriteLine(item.ToString)
-        Next
-        SWpics.Close()
+            Dim SWpics As IO.StreamWriter = IO.File.CreateText(maindirec + "\PROTPYE\picturelist.txt")
+            For Each item In PictureList.Items
+                SWpics.WriteLine(item.ToString)
+            Next
+            SWpics.Close()
+        End Try
+
 
     End Sub
 
