@@ -30,7 +30,7 @@ Public Class Form3
 
 
             picbox.BackgroundImage = Form2.PictureBox2.Image
-            Me.DataGridView1.Columns
+
             i = i + 15
             picbox.BringToFront()
         Next
