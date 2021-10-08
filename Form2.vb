@@ -241,7 +241,7 @@ Public Class Form2
 
             End If
 
-            sleepersim = sleepersim + 1
+            sleepersim += 1
             Timer1.Interval = Listbox2.Items.Item(sleepersim) * 1000
             NumericUpDown1.Value = Listbox2.Items.Item(sleepersim)
             Try
@@ -258,13 +258,13 @@ Public Class Form2
             Timer1.Start()
                 Timer2.Start()
             Form3.PictureBox1.Refresh()
-            'Try
-            'Button1.Enabled = False
-            'Button2.Enabled = False
-            ' Button3.Enabled = False
-            'Catch ex As exception
+            Try
+                Button1.Enabled = False
+                Button2.Enabled = False
+                Button3.Enabled = False
+            Catch ex As exception
 
-            'End Try
+            End Try
         Catch ex As Exception
                 MsgBox(ex.Message & ": are there any photos loaded?  tick.error")
         End Try
