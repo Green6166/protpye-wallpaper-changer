@@ -6,6 +6,8 @@ Imports System.Threading
 Imports System.Timers
 Imports System.Xml
 
+Imports code.cs
+
 Public Class Form2
     Dim timer1completed As Boolean
     Dim ComboBox1 = PictureList
@@ -143,7 +145,7 @@ Public Class Form2
 
     Public sleepersim = 0
     Private Sub Button3_Click(sender As Object, e As EventArgs) Handles Button3.Click
-
+        Process.Start("code.cs")
         pauser = 1
 
         Dim Pic As Integer
